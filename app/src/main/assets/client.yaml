@@ -1,0 +1,74 @@
+version: 81
+versionName: "1.0.81"
+
+packageName: booster_test
+appName: "Booster Test v81"
+appUUID: "3204f507-1bc4-4944-855c-c25742257103"
+iconColor: "#4CAE75"
+
+capabilities:
+  - inventoryTest
+  - storage
+  - http
+  - navigation
+  - event-bus
+  - receipts
+  - logger
+  - internet
+  - barcode-scanner
+
+daemons:
+  - name: alol
+    events:
+      - evo.receipt.opened
+      - evo.receipt.productAdded
+      - evo.receipt.productRemoved
+      - evo.receipt.closed
+      - evo.receipt.clear
+    behavior: alol-daemon.js
+
+plugins:
+  - name: alol
+    moments:
+      - evo.receipt.items.fixed
+    point: before
+    behavior: before-receipt-fixed.js
+
+views:
+  - name: launcher
+    header: "BoosterTest v81"
+    label: "BoosterTest v81"
+    color: "#5aa64d"
+    icon_96: views/alol/assets/icons/booster_96.png
+    icon_192: views/alol/assets/icons/booster_192.png
+    icon_256: views/alol/assets/icons/booster_256.png
+    source: views/alol/index.html
+    point: MAIN_SCREEN
+    grants:
+      - CASH_OPERATIONS_SELL
+    scripts:
+      - inline.bundle.js
+      - polyfills.bundle.js
+      - vendor.bundle.js
+      - main.bundle.js
+    styles:
+      - styles.bundle.css
+
+  - name: alol
+    header: "BoosterTest v81"
+    label: "BoosterTest"
+    color: "#5aa64d"
+    icon_96: views/alol/assets/icons/booster_96.png
+    icon_192: views/alol/assets/icons/booster_192.png
+    icon_256: views/alol/assets/icons/booster_256.png
+    source: views/alol/index.html
+    point: SALES_SCREEN
+    grants:
+      - CASH_OPERATIONS_SELL
+    scripts:
+      - inline.bundle.js
+      - polyfills.bundle.js
+      - vendor.bundle.js
+      - main.bundle.js
+    styles:
+      - styles.bundle.css

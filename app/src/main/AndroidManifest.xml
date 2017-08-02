@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><manifest package="ru.evotor.booster_test">
+  <application xmlns:android="http://schemas.android.com/apk/res/android" android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:theme="@style/AppTheme">
+    <meta-data android:value="3204f507-1bc4-4944-855c-c25742257103" android:name="app_uuid"/>
+    <service android:enabled="true" android:name=".UIPluginServiceImplementation" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.EVOTOR"/>
+        <action android:name="evo.receipt.items.fixed"/>
+      </intent-filter>
+    </service>
+    <service android:enabled="true" android:name=".DaemonServiceImplementation" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.EVOTOR"/>
+        <action android:name="evo.receipt.opened"/>
+        <action android:name="evo.receipt.productAdded"/>
+        <action android:name="evo.receipt.productRemoved"/>
+        <action android:name="evo.receipt.closed"/>
+        <action android:name="evo.receipt.clear"/>
+      </intent-filter>
+    </service>
+    <receiver android:exported="true" android:name=".DaemonReceiver" android:enabled="true">
+      <intent-filter>
+        <action android:name="evo.receipt.opened"/>
+        <action android:name="evo.receipt.productAdded"/>
+        <action android:name="evo.receipt.productRemoved"/>
+        <action android:name="evo.receipt.closed"/>
+        <action android:name="evo.receipt.clear"/>
+      </intent-filter>
+    </receiver>
+    <activity android:icon="@mipmap/launcher_icon" android:label="BoosterTest v81" android:name=".LAUNCHER">
+      <intent-filter android:priority="90">
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.EVOTOR"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+      <meta-data android:value="@color/launcher_launcher_color" android:name="ru.evotor.launcher.BACKGROUND_COLOR"/>
+    </activity>
+    <activity android:icon="@mipmap/alol_icon" android:label="BoosterTest" android:name=".ALOL">
+      <intent-filter android:priority="90">
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="evo.v2.receipt.sell.receiptDiscount"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+      <meta-data android:value="@color/alol_launcher_color" android:name="ru.evotor.sales_screen.BACKGROUND_COLOR"/>
+    </activity>
+    <service android:exported="true" android:icon="@mipmap/alol_icon" android:label="BoosterTest" android:name=".ALOL_SERVICE" android:enabled="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <action android:name="evo.v2.receipt.sell.receiptDiscount"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+      </intent-filter>
+      <meta-data android:value="@color/alol_launcher_color" android:name="ru.evotor.sales_screen.BACKGROUND_COLOR"/>
+    </service>
+  </application>
+  <uses-permission xmlns:android="http://schemas.android.com/apk/res/android" android:name="android.permission.INTERNET"/>
+  <uses-permission xmlns:android="http://schemas.android.com/apk/res/android" android:name="ru.evotor.devices.SCANNER_RECEIVER"/>
+</manifest>
